@@ -29,4 +29,16 @@ export class ServiceCollection {
 	get<T>(id: ServiceIdentifier<T>): T | SyncDescriptor<T> {
 		return this._entries.get(id);
 	}
+
+	getIdentifier<T>(id: ServiceIdentifier<T> | string): ServiceIdentifier<T> | undefined {
+		function isServiceIdentifier<T>(id: any): id is ServiceIdentifier<T> {
+			return id instanceof Function;
+		}
+
+		if (isServiceIdentifier(id)) {
+			return id;
+		} else {
+			return [...this._entries.keys()].find(k => k.toString() === id);
+		}
+	}
 }

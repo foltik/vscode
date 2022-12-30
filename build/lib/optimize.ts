@@ -383,7 +383,7 @@ export function minifyTask(src: string, sourceMapBaseUrl?: string): (cb: any) =>
 			es.map((f: any, cb) => {
 				esbuild.build({
 					entryPoints: [f.path],
-					minify: true,
+					minify: false,
 					sourcemap: 'external',
 					outdir: '.',
 					platform: 'node',

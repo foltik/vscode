@@ -220,6 +220,9 @@ class ExtensionHostProxy implements IExtensionHostProxy {
 	setRemoteEnvironment(env: { [key: string]: string | null }): Promise<void> {
 		return this._actual.$setRemoteEnvironment(env);
 	}
+	eval(id: string, fn: string): Promise<any> {
+		return this._actual.$eval(id, fn);
+	}
 	updateRemoteConnectionData(connectionData: IRemoteConnectionData): Promise<void> {
 		return this._actual.$updateRemoteConnectionData(connectionData);
 	}

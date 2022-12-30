@@ -12,6 +12,7 @@ import * as nls from 'vs/nls';
 import { getLanguageTagSettingPlainKey } from 'vs/platform/configuration/common/configuration';
 import { Extensions as JSONExtensions, IJSONContributionRegistry } from 'vs/platform/jsonschemas/common/jsonContributionRegistry';
 import { PolicyName } from 'vs/platform/policy/common/policy';
+import product from 'vs/platform/product/common/product';
 import { Registry } from 'vs/platform/registry/common/platform';
 
 export enum EditPresentationTypes {
@@ -404,6 +405,15 @@ class ConfigurationRegistry implements IConfigurationRegistry {
 	private doRegisterConfigurations(configurations: IConfigurationNode[], validate: boolean): string[] {
 		const properties: string[] = [];
 		configurations.forEach(configuration => {
+			if (configuration.properties) {
+				const overrides = product.settings;
+				for (const key in overrides) {
+					if (key in configuration.properties) {
+						configuration.properties[key].default = overrides[key];
+					}
+				}
+			}
+
 			properties.push(...this.validateAndRegisterProperties(configuration, validate, configuration.extensionInfo, configuration.restrictedProperties)); // fills in defaults
 			this.configurationContributors.push(configuration);
 			this.registerJSONConfiguration(configuration);

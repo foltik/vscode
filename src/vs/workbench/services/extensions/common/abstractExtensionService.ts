@@ -1137,6 +1137,19 @@ export abstract class AbstractExtensionService extends Disposable implements IEx
 			.map(manager => manager.setRemoteEnvironment(env));
 	}
 
+	public async eval(id: string, fn: string): Promise<any> {
+		for (const manager of this._extensionHostManagers) {
+			try {
+				return await manager.eval(id, fn);
+			} catch (e) {
+				if (e) {
+					return Promise.reject(e);
+				}
+			}
+		}
+		return undefined;
+	}
+
 	//#endregion
 
 	// --- impl

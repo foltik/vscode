@@ -54,6 +54,7 @@ export interface IExtensionHostManager {
 	start(allExtensions: IExtensionDescription[], myExtensions: ExtensionIdentifier[]): Promise<void>;
 	extensionTestsExecute(): Promise<number>;
 	setRemoteEnvironment(env: { [key: string]: string | null }): Promise<void>;
+	eval(id: string, fn: string): Promise<any>;
 }
 
 export function createExtensionHostManager(instantiationService: IInstantiationService, extensionHostId: string, extensionHost: IExtensionHost, isInitialStart: boolean, initialActivationEvents: string[], internalExtensionService: IInternalExtensionService): IExtensionHostManager {
@@ -453,6 +454,15 @@ class ExtensionHostManager extends Disposable implements IExtensionHostManager {
 
 		return proxy.setRemoteEnvironment(env);
 	}
+
+	public async eval(id: string, fn: string): Promise<any> {
+		const proxy = await this._proxy;
+		if (!proxy) {
+			return Promise.reject();
+		}
+
+		return proxy.eval(id, fn);
+	}
 }
 
 /**
@@ -609,6 +619,15 @@ class LazyStartExtensionHostManager extends Disposable implements IExtensionHost
 		await this._startCalled.wait();
 		if (this._actual) {
 			return this._actual.setRemoteEnvironment(env);
+		}
+	}
+
+	public async eval(id: string, fn: string): Promise<any> {
+		await this._startCalled.wait();
+		if (this._actual) {
+			return this._actual.eval(id, fn);
+		} else {
+			return Promise.reject();
 		}
 	}
 }

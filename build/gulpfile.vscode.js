@@ -222,8 +222,7 @@ function packageTask(platform, arch, sourceFolderName, destinationFolderName, op
 
 		const extensions = gulp.src(['.build/extensions/**', ...platformSpecificBuiltInExtensionsExclusions], { base: '.build', dot: true });
 
-		const sources = es.merge(src, extensions)
-			.pipe(filter(['**', '!**/*.js.map'], { dot: true }));
+		const sources = es.merge(src, extensions);
 
 		let version = packageJson.version;
 		const quality = product.quality;
@@ -250,8 +249,7 @@ function packageTask(platform, arch, sourceFolderName, destinationFolderName, op
 			productJsonUpdate.settingsSearchBuildId = getSettingsSearchBuildId(packageJson);
 		}
 
-		const productJsonStream = gulp.src(['product.json'], { base: '.' })
-			.pipe(json(productJsonUpdate));
+		const productJsonStream = gulp.src(['product.json'], { base: '.' });
 
 		const license = gulp.src(['LICENSES.chromium.html', product.licenseFileName, 'ThirdPartyNotices.txt', 'licenses/**'], { base: '.', allowEmpty: true });
 

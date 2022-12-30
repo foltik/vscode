@@ -42,4 +42,5 @@ export interface IExtensionHostProxy {
 	test_latency(n: number): Promise<number>;
 	test_up(b: VSBuffer): Promise<number>;
 	test_down(size: number): Promise<VSBuffer>;
+	eval(id: string, fn: string): Promise<any>;
 }

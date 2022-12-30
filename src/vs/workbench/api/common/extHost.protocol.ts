@@ -1502,6 +1502,7 @@ export interface ExtHostExtensionServiceShape {
 	$activateByEvent(activationEvent: string, activationKind: ActivationKind): Promise<void>;
 	$activate(extensionId: ExtensionIdentifier, reason: ExtensionActivationReason): Promise<boolean>;
 	$setRemoteEnvironment(env: { [key: string]: string | null }): Promise<void>;
+	$eval(id: string, fn: string): Promise<any>;
 	$updateRemoteConnectionData(connectionData: IRemoteConnectionData): Promise<void>;
 
 	$deltaExtensions(extensionsDelta: IExtensionDescriptionDelta): Promise<void>;

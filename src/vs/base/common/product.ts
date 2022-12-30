@@ -48,6 +48,8 @@ export interface IProductConfiguration {
 	readonly urlProtocol: string;
 	readonly dataFolderName: string; // location for extensions (e.g. ~/.vscode-insiders)
 
+	readonly settings: { [key: string]: any };
+
 	readonly builtInExtensions?: IBuiltInExtension[];
 
 	readonly downloadUrl?: string;

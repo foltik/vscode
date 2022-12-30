@@ -29,7 +29,7 @@ export interface IConstructorSignature<T, Args extends any[] = []> {
 }
 
 export interface ServicesAccessor {
-	get<T>(id: ServiceIdentifier<T>): T;
+	get<T>(id: ServiceIdentifier<T> | string): T;
 }
 
 export const IInstantiationService = createDecorator<IInstantiationService>('instantiationService');

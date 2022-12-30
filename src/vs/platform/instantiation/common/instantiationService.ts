@@ -52,7 +52,7 @@ export class InstantiationService implements IInstantiationService {
 		let _done = false;
 		try {
 			const accessor: ServicesAccessor = {
-				get: <T>(id: ServiceIdentifier<T>) => {
+				get: <T>(id: ServiceIdentifier<T> | string) => {
 
 					if (_done) {
 						throw illegalState('service accessor is only valid during the invocation of its target method');
@@ -129,6 +129,15 @@ export class InstantiationService implements IInstantiationService {
 		}
 	}
 
+	private _resolveServiceIdentifier<T>(id: ServiceIdentifier<T> | string): ServiceIdentifier<T> {
+		const resolved = this._services.getIdentifier(id) || this._parent?._resolveServiceIdentifier(id);
+		if (resolved) {
+			return resolved;
+		} else {
+			throw new Error(`Unknown service identifier: '${id}'`);
+		}
+	}
+
 	private _getServiceInstanceOrDescriptor<T>(id: ServiceIdentifier<T>): T | SyncDescriptor<T> {
 		const instanceOrDesc = this._services.get(id);
 		if (!instanceOrDesc && this._parent) {
@@ -138,7 +147,8 @@ export class InstantiationService implements IInstantiationService {
 		}
 	}
 
-	protected _getOrCreateServiceInstance<T>(id: ServiceIdentifier<T>, _trace: Trace): T {
+	protected _getOrCreateServiceInstance<T>(_id: ServiceIdentifier<T> | string, _trace: Trace): T {
+		const id = this._resolveServiceIdentifier(_id);
 		if (this._globalGraph && this._globalGraphImplicitDependency) {
 			this._globalGraph.insertEdge(this._globalGraphImplicitDependency, String(id));
 		}

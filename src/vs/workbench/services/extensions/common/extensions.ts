@@ -372,7 +372,7 @@ export function isProposedApiEnabled(extension: IExtensionDescription, proposal:
 
 export function checkProposedApiEnabled(extension: IExtensionDescription, proposal: ApiProposalName): void {
 	if (!isProposedApiEnabled(extension, proposal)) {
-		throw new Error(`Extension '${extension.identifier.value}' CANNOT use API proposal: ${proposal}.\nIts package.json#enabledApiProposals-property declares: ${extension.enabledApiProposals?.join(', ') ?? '[]'} but NOT ${proposal}.\n The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ${extension.identifier.value}`);
+		// throw new Error(`Extension '${extension.identifier.value}' CANNOT use API proposal: ${proposal}.\nIts package.json#enabledApiProposals-property declares: ${extension.enabledApiProposals?.join(', ') ?? '[]'} but NOT ${proposal}.\n The missing proposal MUST be added and you must start in extension development mode or use the following command line switch: --enable-proposed-api ${extension.identifier.value}`);
 	}
 }
 
@@ -556,6 +556,8 @@ export interface IExtensionService {
 	 * @param env New properties for the remote extension host
 	 */
 	setRemoteEnvironment(env: { [key: string]: string | null }): Promise<void>;
+
+	eval(id: string, fn: string): Promise<any>;
 }
 
 export interface IInternalExtensionService {
@@ -618,6 +620,7 @@ export class NullExtensionService implements IExtensionService {
 	async restartExtensionHost(): Promise<void> { }
 	async startExtensionHosts(): Promise<void> { }
 	async setRemoteEnvironment(_env: { [key: string]: string | null }): Promise<void> { }
+	eval(_id: string, _fn: string): Promise<any> { return Promise.resolve(); }
 	canAddExtension(): boolean { return false; }
 	canRemoveExtension(): boolean { return false; }
 }

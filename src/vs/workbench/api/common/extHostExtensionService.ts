@@ -933,6 +933,20 @@ export abstract class AbstractExtHostExtensionService extends Disposable impleme
 	protected abstract _getEntryPoint(extensionDescription: IExtensionDescription): string | undefined;
 	protected abstract _loadCommonJSModule<T extends object | undefined>(extensionId: IExtensionDescription | null, module: URI, activationTimesBuilder: ExtensionActivationTimesBuilder): Promise<T>;
 	public abstract $setRemoteEnvironment(env: { [key: string]: string | null }): Promise<void>;
+
+	public async $eval(id: string, fn: string): Promise<any> {
+		const exports = this.getExtensionExports(new ExtensionIdentifier(id));
+		if (exports) {
+			try {
+				// eslint-disable-next-line no-eval
+				const f = eval(`( ${fn} )`);
+				const result = await f(exports);
+				return result;
+			} catch (e) {
+				return Promise.reject(e);
+			}
+		}
+	}
 }
 
 
