@@ -20,8 +20,16 @@
 	},
 
 	"builtInExtensions": [
+		{ "name": "vscodevim.vim", "version": "1.24.3" },
+		{ "name": "EditorConfig.EditorConfig", "version": "0.16.4" },
+
+		{ "name": "ms-vscode-remote.remote-ssh", "version": "0.95.2022122215" },
+		{ "name": "ms-vscode.remote-explorer", "version": "0.1.2022121209" },
+
 		{ "name": "ms-vscode.js-debug", "version": "1.74.1" },
-		{ "name": "ms-vscode.js-debug-companion", "version": "1.0.18" }
+		{ "name": "ms-vscode.js-debug-companion", "version": "1.0.18" },
+
+		{ "name": "s-nlf-fh.glassit", "version": "0.2.5" }
 	],
 	"webBuiltInExtensions": [],
 
