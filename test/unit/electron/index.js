@@ -165,11 +165,11 @@ app.on('ready', () => {
 		return {
 			product: {
 				version: '1.x.y',
-				nameShort: 'Code - OSS Dev',
-				nameLong: 'Code - OSS Dev',
-				applicationName: 'code-oss',
-				dataFolderName: '.vscode-oss',
-				urlProtocol: 'code-oss',
+				nameShort: 'C0de',
+				nameLong: 'Visual Studio C0de',
+				applicationName: 'code',
+				dataFolderName: '.vsc0de',
+				urlProtocol: 'vscode',
 			}
 		};
 	});

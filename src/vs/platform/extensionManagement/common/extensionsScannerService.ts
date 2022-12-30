@@ -946,7 +946,7 @@ export class NativeExtensionsScannerService extends AbstractExtensionsScannerSer
 		super(
 			systemExtensionsLocation,
 			userExtensionsLocation,
-			joinPath(userHome, '.vscode-oss-dev', 'extensions', 'control.json'),
+			joinPath(userHome, `${productService.dataFolderName}-dev`, 'extensions', 'control.json'),
 			joinPath(userDataPath, MANIFEST_CACHE_FOLDER),
 			userDataProfilesService, extensionsProfileScannerService, fileService, logService, environmentService, productService, uriIdentityService, instantiationService);
 		this.translationsPromise = (async () => {

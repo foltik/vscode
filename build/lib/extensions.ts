@@ -292,14 +292,6 @@ const excludedExtensions = [
 	'ms-vscode.node-debug2',
 ];
 
-const marketplaceWebExtensionsExclude = new Set([
-	'ms-vscode.node-debug',
-	'ms-vscode.node-debug2',
-	'ms-vscode.js-debug-companion',
-	'ms-vscode.js-debug',
-	'ms-vscode.vscode-js-profile-table'
-]);
-
 interface IBuiltInExtension {
 	name: string;
 	version: string;
@@ -357,8 +349,9 @@ export function packageLocalExtensionsStream(forWeb: boolean): Stream {
 				return { name: extensionName, path: extensionPath, manifestPath: absoluteManifestPath };
 			})
 			.filter(({ name }) => excludedExtensions.indexOf(name) === -1)
-			.filter(({ name }) => builtInExtensions.every(b => b.name !== name))
-			.filter(({ manifestPath }) => (forWeb ? isWebExtension(require(manifestPath)) : true))
+			.filter(({ name }) => forWeb || builtInExtensions.every(b => b.name !== name))
+			.filter(({ name }) => !forWeb || webBuiltInExtensions.every(b => b.name !== name))
+			.filter(({ manifestPath }) => !forWeb || isWebExtension(require(manifestPath)))
 	);
 	const localExtensionsStream = minifyExtensionResources(
 		es.merge(
@@ -390,10 +383,7 @@ export function packageLocalExtensionsStream(forWeb: boolean): Stream {
 }
 
 export function packageMarketplaceExtensionsStream(forWeb: boolean): Stream {
-	const marketplaceExtensionsDescriptions = [
-		...builtInExtensions.filter(({ name }) => (forWeb ? !marketplaceWebExtensionsExclude.has(name) : true)),
-		...(forWeb ? webBuiltInExtensions : [])
-	];
+    const marketplaceExtensionsDescriptions = forWeb ? webBuiltInExtensions : builtInExtensions;
 	const marketplaceExtensionsStream = minifyExtensionResources(
 		es.merge(
 			...marketplaceExtensionsDescriptions

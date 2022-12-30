@@ -440,7 +440,7 @@
 				"runtimeExecutable": "${workspaceFolder}/.build/electron/Code - OSS.exe"
 			},
 			"linux": {
-				"runtimeExecutable": "${workspaceFolder}/.build/electron/code-oss"
+				"runtimeExecutable": "${workspaceFolder}/.build/electron/c0de"
 			},
 			"outputCapture": "std",
 			"args": [
@@ -465,12 +465,12 @@
 			"request": "launch",
 			"name": "Run Unit Tests For Current File",
 			"program": "${workspaceFolder}/test/unit/electron/index.js",
-			"runtimeExecutable": "${workspaceFolder}/.build/electron/Code - OSS.app/Contents/MacOS/Electron",
+			"runtimeExecutable": "${workspaceFolder}/.build/electron/C0de.app/Contents/MacOS/Electron",
 			"windows": {
-				"runtimeExecutable": "${workspaceFolder}/.build/electron/Code - OSS.exe"
+				"runtimeExecutable": "${workspaceFolder}/.build/electron/C0de.exe"
 			},
 			"linux": {
-				"runtimeExecutable": "${workspaceFolder}/.build/electron/code-oss"
+				"runtimeExecutable": "${workspaceFolder}/.build/electron/c0de"
 			},
 			"cascadeTerminateToConfigurations": [
 				"Attach to VS Code"

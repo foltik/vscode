@@ -32,7 +32,7 @@ export class ExtensionsScannerService extends AbstractExtensionsScannerService i
 		super(
 			URI.file(nativeEnvironmentService.builtinExtensionsPath),
 			URI.file(nativeEnvironmentService.extensionsPath),
-			joinPath(nativeEnvironmentService.userHome, '.vscode-oss-dev', 'extensions', 'control.json'),
+			joinPath(nativeEnvironmentService.userHome, `${productService.dataFolderName}-dev`, 'extensions', 'control.json'),
 			joinPath(URI.file(nativeEnvironmentService.userDataPath), MANIFEST_CACHE_FOLDER),
 			userDataProfilesService, extensionsProfileScannerService, fileService, logService, nativeEnvironmentService, productService, uriIdentityService, instantiationService);
 	}
