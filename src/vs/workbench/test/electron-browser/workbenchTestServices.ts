@@ -64,6 +64,7 @@ const NULL_PROFILE = {
 	isDefault: false,
 	location: URI.file(homeDir),
 	settingsResource: joinPath(URI.file(homeDir), 'settings.json'),
+	userScriptResource: joinPath(URI.file(homeDir), 'user.js'),
 	globalStorageHome: joinPath(URI.file(homeDir), 'globalStorage'),
 	keybindingsResource: joinPath(URI.file(homeDir), 'keybindings.json'),
 	tasksResource: joinPath(URI.file(homeDir), 'tasks.json'),

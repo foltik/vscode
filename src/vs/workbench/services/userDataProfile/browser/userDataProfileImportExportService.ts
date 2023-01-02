@@ -855,6 +855,7 @@ class UserDataProfileExportState extends UserDataProfileImportExportState {
 			shortName: profile.shortName,
 			globalStorageHome: profile.globalStorageHome,
 			settingsResource: profile.settingsResource.with({ scheme: USER_DATA_PROFILE_IMPORT_EXPORT_SCHEME }),
+			userScriptResource: profile.userScriptResource.with({ scheme: USER_DATA_PROFILE_IMPORT_EXPORT_SCHEME }),
 			keybindingsResource: profile.keybindingsResource.with({ scheme: USER_DATA_PROFILE_IMPORT_EXPORT_SCHEME }),
 			tasksResource: profile.tasksResource.with({ scheme: USER_DATA_PROFILE_IMPORT_EXPORT_SCHEME }),
 			snippetsHome: profile.snippetsHome.with({ scheme: USER_DATA_PROFILE_IMPORT_EXPORT_SCHEME }),

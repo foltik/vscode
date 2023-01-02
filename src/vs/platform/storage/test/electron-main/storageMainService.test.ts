@@ -38,6 +38,7 @@ suite('StorageMainService', function () {
 		location: inMemoryProfileRoot,
 		globalStorageHome: joinPath(inMemoryProfileRoot, 'globalStorageHome'),
 		settingsResource: joinPath(inMemoryProfileRoot, 'settingsResource'),
+		userScriptResource: joinPath(inMemoryProfileRoot, 'userScriptResource'),
 		keybindingsResource: joinPath(inMemoryProfileRoot, 'keybindingsResource'),
 		tasksResource: joinPath(inMemoryProfileRoot, 'tasksResource'),
 		snippetsHome: joinPath(inMemoryProfileRoot, 'snippetsHome'),

@@ -227,6 +227,10 @@
 			"project": "vscode-workbench"
 		},
 		{
+			"name": "vs/workbench/contrib/userScript",
+			"project": "vscode-workbench"
+		},
+		{
 			"name": "vs/workbench/contrib/watermark",
 			"project": "vscode-workbench"
 		},
@@ -412,6 +416,10 @@
 		},
 		{
 			"name": "vs/workbench/services/textMate",
+			"project": "vscode-workbench"
+		},
+		{
+			"name": "vs/workbench/services/userScript",
 			"project": "vscode-workbench"
 		},
 		{

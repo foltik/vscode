@@ -42,6 +42,7 @@ export interface IUserDataProfile {
 	readonly location: URI;
 	readonly globalStorageHome: URI;
 	readonly settingsResource: URI;
+	readonly userScriptResource: URI;
 	readonly keybindingsResource: URI;
 	readonly tasksResource: URI;
 	readonly snippetsHome: URI;
@@ -60,6 +61,7 @@ export function isUserDataProfile(thing: unknown): thing is IUserDataProfile {
 		&& URI.isUri(candidate.location)
 		&& URI.isUri(candidate.globalStorageHome)
 		&& URI.isUri(candidate.settingsResource)
+		&& URI.isUri(candidate.userScriptResource)
 		&& URI.isUri(candidate.keybindingsResource)
 		&& URI.isUri(candidate.tasksResource)
 		&& URI.isUri(candidate.snippetsHome)
@@ -129,6 +131,7 @@ export function reviveProfile(profile: UriDto<IUserDataProfile>, scheme: string)
 		location: URI.revive(profile.location).with({ scheme }),
 		globalStorageHome: URI.revive(profile.globalStorageHome).with({ scheme }),
 		settingsResource: URI.revive(profile.settingsResource).with({ scheme }),
+		userScriptResource: URI.revive(profile.userScriptResource).with({ scheme }),
 		keybindingsResource: URI.revive(profile.keybindingsResource).with({ scheme }),
 		tasksResource: URI.revive(profile.tasksResource).with({ scheme }),
 		snippetsHome: URI.revive(profile.snippetsHome).with({ scheme }),
@@ -147,6 +150,7 @@ export function toUserDataProfile(id: string, name: string, location: URI, optio
 		shortName: options?.shortName,
 		globalStorageHome: joinPath(location, 'globalStorage'),
 		settingsResource: joinPath(location, 'settings.json'),
+		userScriptResource: joinPath(location, 'user.js'),
 		keybindingsResource: joinPath(location, 'keybindings.json'),
 		tasksResource: joinPath(location, 'tasks.json'),
 		snippetsHome: joinPath(location, 'snippets'),

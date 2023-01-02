@@ -99,6 +99,7 @@ import 'vs/workbench/services/hover/browser/hoverService';
 import 'vs/workbench/services/assignment/common/assignmentService';
 import 'vs/workbench/services/outline/browser/outlineService';
 import 'vs/workbench/services/languageDetection/browser/languageDetectionWorkerServiceImpl';
+import 'vs/workbench/services/userScript/browser/userScriptService';
 import 'vs/editor/common/services/languageFeaturesService';
 
 import { InstantiationType, registerSingleton } from 'vs/platform/instantiation/common/extensions';
@@ -354,5 +355,8 @@ import 'vs/workbench/contrib/deprecatedExtensionMigrator/browser/deprecatedExten
 
 // Bracket Pair Colorizer 2 Telemetry
 import 'vs/workbench/contrib/bracketPairColorizer2Telemetry/browser/bracketPairColorizer2Telemetry.contribution';
+
+// User Script
+import 'vs/workbench/contrib/userScript/browser/userScript.contribution';
 
 //#endregion
